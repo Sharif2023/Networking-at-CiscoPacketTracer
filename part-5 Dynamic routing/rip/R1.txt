@@ -1,0 +1,18 @@
+Router>en
+Router#config t
+Enter configuration commands, one per line.  End with CNTL/Z.
+	
+Router(config)#router rip
+Router(config-router)#version 2
+	
+Router(config-router)#network 192.168.100.0 [Connected network addresses]
+Router(config-router)#network 192.168.200.0 [Connected network addresses]
+Router(config-router)#network 172.16.100.128 [Connected network addresses]
+Router(config-router)#ex
+Router(config)#ex
+Router#
+%SYS-5-CONFIG_I: Configured from console by console
+wr
+Building configuration...
+[OK]
+Router#

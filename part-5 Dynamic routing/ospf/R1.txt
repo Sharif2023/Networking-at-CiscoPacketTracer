@@ -1,0 +1,24 @@
+
+Router>en
+Router#config t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#router ospf 10 [10 means # of process in (0 - 65,536) a single router]
+			(process-id)
+Router(config-router)#router-id 1.1.1.1
+				(router-id)
+Router(config-router)#network 192.168.100.0 0.0.0.255 area 0
+					(Wildcard Mask)
+Router(config-router)#network 192.168.200.0 0.0.0.255 area 0
+Router(config-router)#network 172.16.100.128 0.0.0.3 area 0
+Router(config-router)#ex
+Router(config)#ex
+Router#
+%SYS-5-CONFIG_I: Configured from console by console
+wr
+Building configuration...
+[OK]
+
+==============================================================
+Wildcard Mask can be comparison/Missing of Subnet bit from 255
+e.g.:   Subnet:  255.255.255.  0
+	Wildcard:  0.  0.  0.255
