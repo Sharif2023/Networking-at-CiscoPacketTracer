@@ -1,0 +1,5 @@
+Requirement:
+1. LAN-1 Can access server2
+2. LAN-2 can't access server1
+3. PC-3 can only access server1
+
