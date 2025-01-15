@@ -1,0 +1,42 @@
+Requirement:
+------------
+1. LAN-1 Can Access Server-1
+2. LAN-2 Can't Access Server-2
+
+Step 1: Define the ACL for Router1
+Allow LAN-1 (192.168.100.0/24) to access Server-1 (10.10.10.0/24).
+Deny LAN-2 (192.168.200.0/24) access to Server-2 (10.10.20.0/24).
+Step 2: Apply ACL Configuration on Router1
+Create an ACL (let's use ACL 10).
+
+Permit LAN-1 to access Server-1.
+Deny LAN-2 from accessing Server-2.
+Allow other traffic as needed.
+Apply the ACL to the appropriate interface.
+
+The ACL should be applied to the outbound traffic on the interface leading to Router2 (g0/0/1).
+Configuration Commands
+Router1: ACL Configuration:
+
+! Create standard ACL for LAN-1 and LAN-2
+access-list 10 permit 192.168.100.0 0.0.0.255
+access-list 10 deny 192.168.200.0 0.0.0.255
+access-list 10 permit any
+
+! Apply ACL 10 to the outbound interface towards Router2
+interface gig0/0/1
+ip access-group 10 out
+
+Explanation of Commands
+access-list 10 permit 192.168.100.0 0.0.0.255
+Allows all traffic from LAN-1 (192.168.100.0/24).
+
+access-list 10 deny 192.168.200.0 0.0.0.255
+Denies traffic from LAN-2 (192.168.200.0/24).
+
+access-list 10 permit any
+Permits all other traffic to avoid blocking unintended traffic.
+
+ip access-group 10 out
+Applies the ACL to outgoing traffic on the interface towards Router2 (g0/0/1).
+
