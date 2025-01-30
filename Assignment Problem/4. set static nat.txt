@@ -1,0 +1,21 @@
+R1:
+
+Router>en
+Router#config t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#int se0/1/1
+Router(config-if)#ip nat inside
+Router(config-if)#ex
+Router(config)#int se0/2/0
+Router(config-if)#ip nat inside
+Router(config-if)#ex
+Router(config)#int se0/1/0
+Router(config-if)#ip nat outside
+Router(config-if)#ex
+Router(config)#ip nat inside source static 192.168.1.1 10.1.1.2
+Router(config)#ex
+Router#
+%SYS-5-CONFIG_I: Configured from console by console
+wr
+Building configuration...
+[OK]
